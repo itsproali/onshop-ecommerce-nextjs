@@ -1,0 +1,27 @@
+{
+  "name": "onshop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/font": "13.1.6",
+    "@reduxjs/toolkit": "^1.9.2",
+    "eslint": "8.34.0",
+    "eslint-config-next": "13.1.6",
+    "mongodb": "^5.0.1",
+    "mongoose": "^6.9.2",
+    "next": "13.1.6",
+    "next-redux-wrapper": "^8.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.58.2"
+  }
+}

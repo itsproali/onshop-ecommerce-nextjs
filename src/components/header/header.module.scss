@@ -1,0 +1,79 @@
+.header {
+    width: 100%;
+    box-shadow: $shadow-1;
+}
+
+// Ad ------------
+.ad {
+    width: 100%;
+    height: 40px;
+    background-image: url('/images/ad.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+// Nav ------------
+.nav {
+    border-bottom: 1px solid #eee;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: #666;
+        position: relative;
+        transition: all .2s ease-in-out;
+
+        svg {
+            width: 25px;
+            height: 25px;
+            fill: #bbb;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -12.5px;
+            width: 2px;
+            height: 100%;
+            background-color: #ccc;
+            transform: translateY(-50%);
+        }
+
+        &:last-of-type {
+            &::after {
+                display: none;
+            }
+        }
+        &:hover {
+            color: $color-primary;
+            svg {
+                fill: $color-primary;
+            }
+        }
+    }
+}
