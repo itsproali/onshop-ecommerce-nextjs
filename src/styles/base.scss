@@ -1,3 +1,21 @@
 // Variables
 $color-primary: #4B53B6;
 $shadow-1: rgba(99, 99, 99, .2) 0 2px 8px 0;
+
+.btn_primary {
+    background: $color-primary;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    gap: 5px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        background: darken($color-primary, 10%);
+    }
+}
