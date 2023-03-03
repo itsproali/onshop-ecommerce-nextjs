@@ -1,15 +1,35 @@
-.form_wrapper {
+.signin {
   display: flex;
   flex-direction: column;
   margin: 50px auto;
   align-items: center;
   justify-content: center;
-  width: 40%;
+  padding: 0 8%;
+
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  @media screen and (max-width: 768px) {
+    & {
+      padding: 0 5%;
+
+      &__container {
+        flex-direction: column;
+      }
+    }
+  }
+
 }
 
 .signin_back {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto 40px 0;
   gap: 10px;
 
   a {
@@ -19,6 +39,19 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.swap_signin {
+  margin-top: 10px;
+  button {
+    all:unset;
+    cursor: pointer;
+    color: $color-primary;
+  }
+    
+  button:hover {
+    text-decoration: underline;
   }
 }
 
@@ -36,5 +69,27 @@
   svg {
     width: 20px;
     height: 20px;
+  }
+}
+
+.social_btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 15px 0;
+  border: 1px solid #999;
+  border-radius: 5px;
+  transition: all .2s ease-in-out;
+  padding: 8px 15px;
+  width: 250px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  span {
+    font-weight: 500;
   }
 }
