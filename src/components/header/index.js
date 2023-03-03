@@ -23,13 +23,9 @@ import UserMenu from "./UserMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/features/auth/authSlice";
 import axios from "axios";
+import {useSession, signIn} from "next-auth/react";
 
 const navRight = [
-  // {
-  //   label: "Bangladesh / bdt",
-  //   link: "/",
-  //   icon: <Image src="/images/bd_flag.png" alt="bd" width={30} height={30} />,
-  // },
   {
     label: "Buyer Protection",
     link: "/",
@@ -52,32 +48,36 @@ const navRight = [
 ];
 
 const Header = () => {
+  const {data: session} = useSession();
   const [open, setOpen] = useState(false);
-  const [country, setCountry] = useState({});
+  const [country, setCountry] = useState({
+    flag: "/images/bd_flag.png",
+    name: "Bangladesh",
+    currency: "bdt",
+  });
 
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const key = process.env.IP_REGISTRY_KEY;
-
+  // const key = process.env.IP_REGISTRY_KEY;
 
   // Get country Details
-  useEffect(() => {
-    const getCountry = async () => {
-      try {
-        const { data } = await axios.get(
-          `https://api.ipregistry.co/?key=${key}`
-        );
-        setCountry({
-          name: data?.location?.country?.name,
-          flag: data?.location?.country?.flag?.emojitwo,
-          currency: data?.currency?.code,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getCountry();
-  }, [key]);
+  // useEffect(() => {
+  //   const getCountry = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `https://api.ipregistry.co/?key=${key}`
+  //       );
+  //       setCountry({
+  //         name: data?.location?.country?.name,
+  //         flag: data?.location?.country?.flag?.emojitwo,
+  //         currency: data?.currency?.code,
+  //       });
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getCountry();
+  // }, [key]);
 
   return (
     <>
@@ -114,30 +114,24 @@ const Header = () => {
                   {item.label && <span>{item.label}</span>}
                 </Link>
               ))}
-              {user?.email ? (
+              {session?.user ? (
                 <button className={account_btn} onClick={() => setOpen(!open)}>
-                  <RiAccountPinCircleLine />
-                  <span>Account</span>
+                  {/* <RiAccountPinCircleLine /> */}
+                  <Image src={session?.user?.image} alt={session?.user?.name} width={30} height={30} style={{borderRadius: "50%"}} />
+                  <span>{session?.user?.name}</span>
                   <RiArrowDropDownFill />
                 </button>
               ) : (
                 <button
                   className={btn_primary}
-                  onClick={() =>
-                    dispatch(
-                      login({
-                        name: "Mohammad Ali",
-                        email: "itsproali@gmail.com",
-                      })
-                    )
-                  }
+                  onClick={() => signIn()}
                 >
                   <span>Get Started</span>
                 </button>
               )}
             </div>
             {/* Show the user menu */}
-            {open && <UserMenu user={user} setOpen={setOpen} />}
+            {open && <UserMenu user={session?.user} setOpen={setOpen} />}
           </div>
         </div>
       </header>

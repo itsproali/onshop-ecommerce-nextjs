@@ -4,6 +4,7 @@ import store from "@/store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import persistStore from "redux-persist/lib/persistStore";
 import Head from "next/head";
+import { SessionProvider } from "next-auth/react"
 
 const persistor = persistStore(store);
 
@@ -20,11 +21,13 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+    <SessionProvider session={pageProps.session}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Component {...pageProps} />;
         </PersistGate>
       </Provider>
+      </SessionProvider>
     </>
   );
 }

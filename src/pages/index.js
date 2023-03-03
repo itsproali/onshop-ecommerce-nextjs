@@ -1,10 +1,9 @@
 import Header from "@/components/header";
-import axios from "axios";
 
 export default function Home() {
   return (
     <>
-      <Header  />
+      <Header />
     </>
   );
 }
